@@ -1,17 +1,15 @@
-// app/error.tsx
-
 "use client";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
+// Improve the typing of the props with optional error and reset function
+interface ErrorProps {
+  error: Error & { digest?: string } | null; // The error can be null if no error exists
   reset: () => void;
-}) {
+}
+
+export default function Error({ error, reset }: ErrorProps) {
   return (
     <main className="min-h-screen bg-gray-100 dark:bg-gray-800 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 text-center">
@@ -21,10 +19,10 @@ export default function Error({
             Oops! Something went wrong.
           </h2>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Error: {error.message}
+            Error: {error?.message || "No error message available"}
           </p>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Digest: {error.digest}
+            Digest: {error?.digest || "No digest available"}
           </p>
         </div>
         <div className="space-y-2">
@@ -43,7 +41,10 @@ export default function Error({
   );
 }
 
-function AlertCircleIcon(props: any) {
+// Fix typing for the props of AlertCircleIcon
+interface AlertCircleIconProps extends React.SVGProps<SVGSVGElement> {}
+
+function AlertCircleIcon(props: AlertCircleIconProps) {
   return (
     <svg
       {...props}

@@ -1,23 +1,27 @@
-// components/todos/add-todo.tsx
-
 "use client";
 
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { addTodo } from "@/actions/todos/actions";
+import { FormEvent } from 'react';
 
 export default function AddTodo() {
   const ref = useRef<HTMLFormElement>(null);
+
+  // Fixing the form event typing
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    await addTodo(formData);
+    ref.current?.reset();
+  };
 
   return (
     <form
       className="flex outline-none items-center gap-2"
       ref={ref}
-      action={async (formData) => {
-        await addTodo(formData);
-        ref.current?.reset();
-      }}
+      onSubmit={handleSubmit} // Use onSubmit handler
     >
       <Button className="min-w-5 h-5 p-0 rounded-sm">
         <PlusIcon className="w-4 h-4" />
@@ -33,7 +37,10 @@ export default function AddTodo() {
   );
 }
 
-function PlusIcon(props: any) {
+// Correctly typing the props for PlusIcon
+interface PlusIconProps extends React.SVGProps<SVGSVGElement> {}
+
+function PlusIcon(props: PlusIconProps) {
   return (
     <svg
       {...props}

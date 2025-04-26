@@ -2,9 +2,6 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
-import Link from "next/link";
-
-
 import Todos from "@/components/todos/todos";
 import ClearActions from "@/components/todos/clear-actions";
 import SignOutButton from "@/components/auth/signout-button";
