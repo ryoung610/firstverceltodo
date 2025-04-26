@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 import Todos from "@/components/todos/todos";
 import ClearActions from "@/components/todos/clear-actions";
 import SignOutButton from "@/components/auth/signout-button";
+import { SVGProps } from "react";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -30,8 +31,7 @@ export default async function Home() {
   );
 }
 
-function CheckCircleIcon(props: any) {
-  return (
+const CheckCircleIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
@@ -48,4 +48,3 @@ function CheckCircleIcon(props: any) {
       <polyline points="22 4 12 14.01 9 11.01" />
     </svg>
   );
-}

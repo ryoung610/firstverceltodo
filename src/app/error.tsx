@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 // Improve the typing of the props with optional error and reset function
 interface ErrorProps {
-  error: Error & { digest?: string } | null; // The error can be null if no error exists
+  error: Error | null; // The error can be null if no error exists
   reset: () => void;
 }
 
@@ -22,7 +22,7 @@ export default function Error({ error, reset }: ErrorProps) {
             Error: {error?.message || "No error message available"}
           </p>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Digest: {error?.digest || "No digest available"}
+            Digest: {error?.stack || "No digest available"}
           </p>
         </div>
         <div className="space-y-2">

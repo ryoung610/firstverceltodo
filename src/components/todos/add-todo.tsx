@@ -38,9 +38,8 @@ export default function AddTodo() {
 }
 
 // Correctly typing the props for PlusIcon
-interface PlusIconProps extends React.SVGProps<SVGSVGElement> {}
 
-function PlusIcon(props: PlusIconProps) {
+function PlusIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
