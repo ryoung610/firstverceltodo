@@ -42,9 +42,9 @@ export default function Error({ error, reset }: ErrorProps) {
 }
 
 // Fix typing for the props of AlertCircleIcon
-interface AlertCircleIconProps extends React.SVGProps<SVGSVGElement> {}
+//interface AlertCircleIconProps extends React.SVGProps<SVGSVGElement> {}
 
-function AlertCircleIcon(props: AlertCircleIconProps) {
+function AlertCircleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
